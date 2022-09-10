@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Home - Spring MVC</title>
+<title>Split It - Spring MVC</title>
 <style>
 body {
 	font-family: Arial, Helvetica, sans-serif;
@@ -34,11 +34,26 @@ body {
 	</div>
 
 	<div class="content">
-		<h2>Home</h2>
-		<p>In this tutorial, we briefly discuss what the Spring MVC
-			architecture is and how to create a Spring MVC Web application using
-			XML configuration.</p>
-		<a href="showSplitTheSentenceForm">Split the Sentence</a>
+		<h2>Split The Sentence</h2>
+		<form action="processSplitTheSentence" method="get">
+			<input type="text" name="sentence"
+				placeholder="Please enter a sentence!"
+				style="width: 320px; height: 22px;" /> <input type="submit"
+				value="Split It" style="width: 80px; height: 28px;" />
+		</form>
+		<br />
+
+		<!-- shows the result -->
+		<c:if test="${not empty splitedSentence}">
+			<span>No of words in the sentence: ${noOfWords} </span>
+			<br />
+			<c:forEach items="${splitedSentence}" var="word"
+				varStatus="loopCounter">
+				<span>&nbsp&nbsp${loopCounter.count}.&nbsp<c:out
+						value="${word}" /></span>
+				<br />
+			</c:forEach>
+		</c:if>
 	</div>
 </body>
 </html>
